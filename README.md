@@ -1,4 +1,4 @@
-极简意框架。为了只做毕设程序搭建
+极简意框架。为了制作毕设程序搭建
 
 前台
 * HTML
@@ -9,6 +9,7 @@
 * JAVASCRIPT
 * JQUERY
 * BOOTSTRAP
+
 后台
 * Spring
 * Spring MVC
