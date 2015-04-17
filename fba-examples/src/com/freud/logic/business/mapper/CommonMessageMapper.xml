@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.freud.logic.business.mapper.CommonMessageMapper">
+
+	<resultMap id="message" type="com.freud.logic.business.bean.CommonMessage">
+		<result property="id" jdbcType="INTEGER" column="f_id" />
+		<result property="notify" jdbcType="VARCHAR" column="f_notify" />
+		<result property="status" jdbcType="TINYINT" column="f_status" />
+		<result property="operateDate" jdbcType="DATE" column="f_operate_date" />
+	</resultMap>
+
+	<select id="getNewestCommonMessage" resultMap="message">
+		SELECT
+			f_id,
+			f_notify,
+			f_status,
+			f_operate_date
+		FROM t_common_message
+		WHERE
+		f_status=1
+		order by f_operate_date desc
+	</select>
+
+	<insert id="insertCommonMessage">
+		insert into t_common_message
+		(
+			f_notify,
+			f_status,
+			f_operate_date
+		)
+		VALUES(
+			#{notify},
+			#{status},
+			#{operateDate}
+			)
+	</insert>
+	
+	<delete id="removeCommonMessages">
+		delete from t_common_message where 1=1
+	</delete>
+	
+</mapper>

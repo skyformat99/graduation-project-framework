@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.freud.logic.business.mapper.TouPiaoMapper">
+
+	<resultMap id="toupiao" type="com.freud.logic.business.bean.TouPiao">
+		<result property="id" jdbcType="INTEGER" column="f_id" />
+		<result property="username" jdbcType="VARCHAR" column="f_username" />
+		<result property="count" jdbcType="INTEGER" column="f_count" />
+		<result property="operateDate" jdbcType="DATE" column="f_operate_date" />
+	</resultMap>
+
+	<select id="getAllTouPiao" resultMap="toupiao">
+		SELECT
+			f_id,
+			f_username,
+			f_count,
+			f_operate_date
+		FROM t_toupiao
+		order by f_id
+	</select>
+	
+	<select id="getTouPiaoById" resultMap="toupiao">
+		SELECT
+			f_id,
+			f_username,
+			f_count,
+			f_operate_date
+		FROM t_toupiao
+		WHERE f_id=#{id}
+	</select>
+		
+	<insert id="insertTouPiao">
+		insert into t_toupiao
+		(
+			f_username,
+			f_count,
+			f_operate_date
+		)
+		VALUES(
+			#{username},
+			#{count},
+			#{operateDate}
+			)
+	</insert>
+	
+	<update id="updateTouPiao">
+		UPDATE t_toupiao
+		SET 
+			f_username = #{username},
+			f_count = #{count},
+			f_operate_date = #{operateDate}
+		WHERE f_id=#{id}
+	</update>
+	
+	<delete id="deleteTouPiaoById">
+		delete from t_toupiao where f_id=#{id}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.freud.logic.business.mapper.HuiFuMapper">
+
+	<resultMap id="huifu" type="com.freud.logic.business.bean.Huifu">
+		<result property="id" jdbcType="INTEGER" column="f_id" />
+		<result property="tieziId" jdbcType="INTEGER" column="f_tiezi_id" />
+		<result property="user" jdbcType="VARCHAR" column="f_user" />
+		<result property="content" jdbcType="TINYINT" column="f_content" />
+		<result property="operateDate" jdbcType="DATE" column="f_operate_date" />
+	</resultMap>
+
+	<select id="getHuifuByTieZeId" resultMap="huifu">
+		SELECT
+			f_id,
+			f_tiezi_id,
+			f_user,
+			f_content,
+			f_operate_date
+		FROM t_huifu
+		WHERE
+			f_tiezi_id=#{tieZiId}
+		order by f_operate_date desc
+	</select>
+
+	<insert id="insertHuifu">
+		insert into t_huifu
+		(
+			f_tiezi_id,
+			f_user,
+			f_content,
+			f_operate_date
+		)
+		VALUES(
+			#{tieziId},
+			#{user},
+			#{content},
+			#{operateDate}
+			)
+	</insert>
+	
+	<delete id="removeCommonMessages">
+		delete from t_common_message where 1=1
+	</delete>
+	
+</mapper>
