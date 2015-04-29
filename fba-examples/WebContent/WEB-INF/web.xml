@@ -8,10 +8,7 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-  <listener>
-    <listener-class>com.freud.framework.adapter.listener.AppContextInitListener</listener-class>
-  </listener>
-  <filter>
+    <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>com.freud.framework.adapter.filter.EncodingFilter</filter-class>
     <init-param>
