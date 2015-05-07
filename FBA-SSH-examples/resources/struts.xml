@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+
+	<package name="authority" extends="tiles-default">
+
+		<interceptors>
+			<!--定义一个名为authority的拦截器 -->
+			<interceptor
+				class="com.freud.business.auth.interceptor.AuthorityInterceptor"
+				name="authority" />
+			<!--定义一个包含权限检查的拦截器栈 -->
+			<interceptor-stack name="frameDefault">
+				<!--配置内建默认拦截器 -->
+				<interceptor-ref name="defaultStack" />
+				<!--配置自定义的拦截器 -->
+				<interceptor-ref name="authority" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="frameDefault" />
+		<!--定义全局Result -->
+		<global-results>
+			<result name="login" type="tiles">auth.login</result>
+			<result name="error"  type="tiles">auth.error</result>
+		</global-results>
+
+		<action name="book.list" class="com.freud.business.book.action.BookAction"
+			method="list">
+			<result name="input">/edit.jsp</result>
+		</action>
+
+		<action name="book.add" class="com.freud.business.book.action.BookAction"
+			method="add">
+			<result name="success">/thankyou.jsp</result>
+		</action>
+		
+		<action name="book.detail" class="com.freud.business.book.action.BookAction"
+			method="detail">
+			<result name="success">/thankyou.jsp</result>
+		</action>
+
+		<action name="book.update" class="com.freud.business.book.action.BookAction"
+			method="update">
+			<result name="success">/thankyou.jsp</result>
+		</action>
+		
+		<action name="book.delete" class="com.freud.business.book.action.BookAction"
+			method="delete">
+			<result name="success">/thankyou.jsp</result>
+		</action>
+	</package>
+
+	<package name="non-authority" extends="tiles-default">
+	
+		<action name="index">
+			<result type="tiles">base.definition</result>
+		</action>
+				
+		<action name="login" class="com.freud.business.auth.action.LoginAction" method="login">
+			<result name="input" type="tiles">auth.login</result>
+			<result name="success" type="redirect">index</result>
+		</action>
+		<action name="register" class="com.freud.business.auth.action.LoginAction"
+			method="register">
+			<result name="input" type="tiles">auth.register</result>
+			<result name="success" type="redirect">index</result>
+		</action>
+		
+	</package>
+</struts>

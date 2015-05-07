@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.freud.logic.business.mapper.XinWenMapper">
+
+	<resultMap id="xinwen" type="com.freud.logic.business.bean.XinWen">
+		<result property="id" jdbcType="INTEGER" column="f_id" />
+		<result property="title" jdbcType="VARCHAR" column="f_title" />
+		<result property="content" jdbcType="VARCHAR" column="f_content" />
+		<result property="operateDate" jdbcType="DATE" column="f_operate_date" />
+	</resultMap>
+
+	<select id="getXinWenById" resultMap="xinwen">
+		SELECT
+			f_id,
+			f_title,
+			f_content,
+			f_operate_date
+		FROM t_xinwen
+		where
+			f_id = #{id}
+		order by f_operate_date desc 
+	</select>
+	
+	<select id="getXinWens" resultMap="xinwen">
+		SELECT
+			f_id,
+			f_title,
+			f_content,
+			f_operate_date
+		FROM t_xinwen
+		order by f_operate_date desc
+	</select>
+			
+	<insert id="insertXinWen">
+		insert into t_xinwen
+		(
+			f_title,
+			f_content,
+			f_operate_date
+		)
+		VALUES(
+			#{title},
+			#{content},
+			#{operateDate}
+			)
+	</insert>
+		
+</mapper>

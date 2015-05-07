@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+	<definition name="base.definition" template="/template/template.jsp">
+		<put-attribute name="title" value="BootStrap Framework - Freud" />
+		<put-attribute name="header" value="/frame/header.jsp" />
+		<put-attribute name="advertisement" value="" />
+		<put-attribute name="body" value="/frame/body.jsp" />
+		<put-attribute name="footer" value="/frame/footer.jsp" />
+	</definition>
+
+	<definition name="auth.login" extends="base.definition">
+		<put-attribute name="body" value="/auth/login.jsp" />
+	</definition>
+
+	<definition name="auth.register" extends="base.definition">
+		<put-attribute name="body" value="/auth/register.jsp" />
+	</definition>
+
+	<definition name="auth.error" extends="base.definition">
+		<put-attribute name="body" value="/auth/error.jsp" />
+	</definition>
+</tiles-definitions> 

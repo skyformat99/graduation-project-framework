@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.freud.logic.business.mapper.TieZiMapper">
+
+	<resultMap id="tiezi" type="com.freud.logic.business.bean.TieZi">
+		<result property="id" jdbcType="INTEGER" column="f_id" />
+		<result property="user" jdbcType="VARCHAR" column="f_user" />
+		<result property="title" jdbcType="VARCHAR" column="f_title" />
+		<result property="content" jdbcType="TINYINT" column="f_content" />
+		<result property="operateDate" jdbcType="DATE" column="f_operate_date" />
+	</resultMap>
+
+	<select id="getAllTiezi" resultMap="tiezi">
+		SELECT
+			f_id,
+			f_user,
+			f_title,
+			f_content,
+			f_operate_date
+		FROM t_tiezi
+		order by f_operate_date desc
+	</select>
+
+	<select id="getTieZiById" resultMap="tiezi">
+		SELECT
+			f_id,
+			f_user,
+			f_title,
+			f_content,
+			f_operate_date
+		FROM t_tiezi
+		WHERE f_id=#{id}
+	</select>
+	
+	<insert id="insertTieZe">
+		insert into t_tiezi
+		(
+			f_user,
+			f_title,
+			f_content,
+			f_operate_date
+		)
+		VALUES(
+			#{user},
+			#{title},
+			#{content},
+			#{operateDate}
+			)
+	</insert>
+	
+	<delete id="removeTieZe">
+		delete from t_tiezi where f_id=#{id}
+	</delete>
+	
+</mapper>
